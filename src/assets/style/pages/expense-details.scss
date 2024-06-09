@@ -1,1 +1,47 @@
-.contact-details-selection {}
+.expense-details {
+    margin-block: 30px;
+    width: 500px;
+    border: 2px $clr1 solid;
+    border-radius: 5px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+
+    .btn-go-back {
+        // align-self: self-end;
+        color: $clr3;
+    }
+
+    .expense-details-container {
+        margin-block-end: 20px;
+
+        h4 {
+            margin-block: 0 0.2em;
+
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        p {
+            margin-block: 0 1em;
+        }
+    }
+
+    .expense-details-actions {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    img {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+
+    img:hover {
+        filter: brightness(200%);
+    }
+}

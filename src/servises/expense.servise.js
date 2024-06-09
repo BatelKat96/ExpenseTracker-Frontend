@@ -46,7 +46,7 @@ function _createExpenses() {
         expenses = [
             { _id: utilService.makeId(), amount: 100, category: 'Food', date: 1709970490000, notes: '' },
             { _id: utilService.makeId(), amount: 50, category: 'Transport', date: 1709106490000, notes: 'To my mother' },
-            { _id: utilService.makeId(), amount: 32, category: 'Utilities', date: 1709128090000, notes: '' },
+            { _id: utilService.makeId(), amount: 32, category: 'Utilities', date: 1709128090000, notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit' },
             { _id: utilService.makeId(), amount: 252, category: 'Food', date: 1709049730000, notes: 'For Ally birthday' }
         ]
         utilService.saveToStorage(STORAGE_KEY, expenses)

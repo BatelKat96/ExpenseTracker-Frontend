@@ -3,6 +3,7 @@ import { AppHeader } from './cmps/AppHeader'
 import { AppFooter } from './cmps/AppFooter'
 import { ExpenseIndex } from './pages/ExpenseIndex'
 import { ExpenseEdit } from './pages/ExpenseEdit'
+import { ExpenseDetails } from './pages/ExpenseDetails'
 
 export function RootCmp() {
 
@@ -15,7 +16,7 @@ export function RootCmp() {
             <Route path="/" element={<ExpenseIndex />} />
             <Route path="/expense/edit" element={<ExpenseEdit />} />
             <Route path="/expense/edit/:expenseId" element={<ExpenseEdit />} />
-            {/* <Route path="/expense/:expenseId" element={<ExpenseDetails />} /> */}
+            <Route path="/expense/:expenseId" element={<ExpenseDetails />} />
             {/* <Route path="/loginSignup" element={<loginsSignup />} /> */}
 
           </Routes>
