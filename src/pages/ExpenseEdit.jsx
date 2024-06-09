@@ -1,18 +1,28 @@
 
 import { useEffect, useState } from 'react'
 import { expenseService } from '../servises/expense.servise.js'
-import { useNavigate } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { utilService } from '../servises/util.service.js'
 
 
 export function ExpenseEdit() {
-
     const [expenseToEdit, setExpenseToEdit] = useState(expenseService.getEmptyExpense())
     const navigate = useNavigate()
+    const { expenseId } = useParams()
 
     useEffect(() => {
-
+        if (expenseId) loadExpense()
     }, [])
+
+    async function loadExpense() {
+        await expenseService.getById(expenseId)
+            .then(expense => {
+                setExpenseToEdit(expense)
+            })
+            .catch(err => {
+                console.log('Had issues getting expense', err)
+            })
+    }
 
     function onSaveExpense(ev) {
         ev.preventDefault()
@@ -32,13 +42,11 @@ export function ExpenseEdit() {
         let value = target.value
         switch (target.type) {
             case 'number':
-            case 'range':
                 value = +value || ''
                 break
             case 'date':
                 value = new Date(value).getTime()
                 break
-
             default:
                 break
         }

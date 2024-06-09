@@ -3,6 +3,7 @@ import { utilService } from './util.service'
 
 export const expenseService = {
     query,
+    getById,
     save,
     getEmptyExpense
 }
@@ -14,6 +15,10 @@ _createExpenses()
 async function query() {
     let expenses = await storageService.query(STORAGE_KEY)
     return expenses
+}
+
+function getById(expenseId) {
+    return storageService.get(STORAGE_KEY, expenseId)
 }
 
 function save(expense) {
