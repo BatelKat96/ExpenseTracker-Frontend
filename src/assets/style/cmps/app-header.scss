@@ -1,11 +1,33 @@
 .app-header {
-    color: $clr1;
     height: 100px;
+    padding: 20px 50px;
+    font-size: 1.3rem;
 
     header {
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+
+    nav {
+        display: flex;
+        gap: 15px;
+        color: rgb(245, 245, 245);
+
+        a:last-of-type {
+            border-inline-start: 1px solid $clr2;
+            padding-inline-start: 15px;
+        }
+    }
+
+
+    a.active {
+        color: $clr3;
+    }
+
+    .logo {
+        color: rgb(187, 187, 187);
+        font-size: 1.5rem;
     }
 
 
