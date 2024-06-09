@@ -1,0 +1,15 @@
+//Setup
+@import "setup/mixins.scss";
+@import "setup/variables.scss";
+
+//Basic
+@import "basic/base.scss";
+
+//Pages
+@import "pages/expense-details.scss";
+@import "pages/expense-index.scss";
+@import "pages/login-signup.scss";
+
+//Cmps
+@import "cmps/app-header.scss";
+@import "cmps/app-footer.scss";
