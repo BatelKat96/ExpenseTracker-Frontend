@@ -5,6 +5,7 @@ export const expenseService = {
     query,
     getById,
     save,
+    remove,
     getEmptyExpense
 }
 
@@ -19,6 +20,10 @@ async function query() {
 
 function getById(expenseId) {
     return storageService.get(STORAGE_KEY, expenseId)
+}
+
+function remove(expenseId) {
+    return storageService.remove(STORAGE_KEY, expenseId)
 }
 
 function save(expense) {

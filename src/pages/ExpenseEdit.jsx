@@ -27,8 +27,7 @@ export function ExpenseEdit() {
     function onSaveExpense(ev) {
         ev.preventDefault()
         expenseService.save(expenseToEdit)
-            .then(expense => {
-                // console.log('expense:', expense)
+            .then(() => {
                 navigate('/')
             })
             .catch(err => {
