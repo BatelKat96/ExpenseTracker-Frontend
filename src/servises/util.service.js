@@ -3,6 +3,7 @@ export const utilService = {
     makeLorem,
     getRandomIntInclusive,
     timeConverter,
+    formatDate,
     saveToStorage,
     loadFromStorage
 }
@@ -35,15 +36,23 @@ function getRandomIntInclusive(min, max) {
 }
 
 function timeConverter(timestampt) {
-    const time = new Date(timestampt * 1000)
+    const time = new Date(timestampt)
     const date = time.toLocaleDateString("he-IS")
     // var hours = time.getHours()
     // var minutes = time.getMinutes()
-    // const formattedTime = `${date} ${padNum(hours)}:${padNum(minutes)}`
+    // const formattedTime = `${date} ${_padNum(hours)}:${_padNum(minutes)}`
     return date
 }
 
-function padNum(num) {
+function formatDate(timestamp) {
+    const date = new Date(timestamp)
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    return `${year}-${month}-${day}`
+}
+
+function _padNum(num) {
     return num > 9 ? num + "" : "0" + num;
 }
 
