@@ -8,6 +8,8 @@ import trashIcon from '/trash-icon.svg'
 
 export function ExpenseDetails() {
     const [expense, setExpense] = useState(null)
+    const navigate = useNavigate()
+
     const { expenseId } = useParams()
 
     useEffect(() => {
@@ -25,8 +27,16 @@ export function ExpenseDetails() {
             })
     }
 
-    function onRemoveExpense(expenseId) {
-        console.log('expenseId:', expenseId)
+    async function onRemoveExpense(expenseId) {
+        const ans = confirm('Do you want to delete this expense?')
+        if (!ans) return
+        await expenseService.remove(expenseId)
+            .then(() => {
+                navigate('/')
+            })
+            .catch(err => {
+                console.log('Had issues saving expense', err)
+            })
 
     }
 
