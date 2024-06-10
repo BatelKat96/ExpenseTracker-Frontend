@@ -1,0 +1,49 @@
+.expense-filter {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-block-start: 2em;
+
+
+    .expense-filter-date {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+
+        input {
+            padding: 3px;
+        }
+
+        label {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+    }
+
+    h3 {
+        margin-block-start: 0;
+        margin-block-end: 0.4em;
+        font-weight: 500;
+        font-size: 1.2rem;
+    }
+
+    .expense-filter-categorys {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+
+        input {
+            margin: 0;
+            margin-top: 3px;
+        }
+
+        label {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+    }
+
+
+
+}

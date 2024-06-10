@@ -6,6 +6,7 @@ export const expenseService = {
     getById,
     save,
     remove,
+    getDefaultFilter,
     getEmptyExpense
 }
 
@@ -13,8 +14,15 @@ const STORAGE_KEY = 'expense_DB'
 
 _createExpenses()
 
-async function query() {
+async function query(filterBy) {
     let expenses = await storageService.query(STORAGE_KEY)
+    const { date, categorys } = filterBy
+    if (date) {
+        expenses = expenses.filter(expense => expense.date > date)
+    }
+    if (categorys.length) {
+        expenses = expenses.filter(expense => categorys.includes(expense.category))
+    }
     return expenses
 }
 
@@ -41,6 +49,12 @@ function getEmptyExpense() {
         category: '',
         date: Date.now(),
         notes: ''
+    }
+}
+function getDefaultFilter() {
+    return {
+        categorys: [],
+        date: '',
     }
 }
 
