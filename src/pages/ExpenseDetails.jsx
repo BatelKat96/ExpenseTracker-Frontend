@@ -5,6 +5,7 @@ import { utilService } from '../servises/util.service'
 import { Link } from 'react-router-dom'
 import editIcon from '/edit-icon.svg'
 import trashIcon from '/trash-icon.svg'
+import { showErrorMsg } from '../servises/event-bus.service'
 
 export function ExpenseDetails() {
     const [expense, setExpense] = useState(null)
@@ -36,6 +37,7 @@ export function ExpenseDetails() {
             })
             .catch(err => {
                 console.log('Had issues saving expense', err)
+                showErrorMsg(`Can't delete this expense`)
             })
 
     }

@@ -1,27 +1,35 @@
 .expense-edit {
+    width: 500px;
+    margin: auto;
 
     form {
         display: grid;
+
+        label {
+            cursor: pointer;
+            margin-block-end: 5px;
+        }
+
+        input {
+            margin-block-end: 15px;
+            padding: 7px;
+        }
+
+        input:nth-of-type(1),
+        input:nth-of-type(2) {
+            justify-self: start;
+        }
+
+        input:focus-visible {
+            outline-color: $clr3 ;
+        }
+
+        p {
+            margin-block: 0 0.8rem;
+            font-size: 1.2rem;
+        }
     }
 
-    label {
-        cursor: pointer;
-        margin-block-end: 5px;
-    }
-
-    input {
-        margin-block-end: 15px;
-        padding: 7px;
-    }
-
-    input:focus-visible {
-        outline-color: $clr3 ;
-    }
-
-    p {
-        margin-block: 0 0.8rem;
-        font-size: 1.2rem;
-    }
 
     div {
         display: flex;
