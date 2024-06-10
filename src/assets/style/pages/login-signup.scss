@@ -1,1 +1,23 @@
-.login-signup-section {}
+.login-signup-section {
+
+    .login-signup-form {
+        display: flex;
+        gap: 10px;
+        margin-block-end: 10px;
+
+        input {
+            padding: 7px;
+        }
+
+        input:focus-visible {
+            outline-color: $clr3;
+        }
+    }
+
+    div {
+        span {
+            cursor: pointer;
+        }
+    }
+
+}

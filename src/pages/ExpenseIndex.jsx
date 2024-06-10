@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 import { expenseService } from '../servises/expense.servise'
 import { ExpenseList } from '../cmps/ExpenseList'
 import { ExpenseFilter } from '../cmps/ExpenseFilter'
 
 export function ExpenseIndex() {
+    const user = useSelector(storeState => storeState.userModule.loggedInUser)
+
     const [expenses, setExpenses] = useState(null)
     const [filterBy, setFilterBy] = useState(expenseService.getDefaultFilter())
 
@@ -32,9 +36,18 @@ export function ExpenseIndex() {
     if (!expenses) return <div>Loading..</div>
     return (
         <section className='expense-index'>
-            <Link to={'/expense/edit'} className='btn'>Add Expense</Link>
-            <ExpenseFilter filterBy={filterBy} onSetFilter={onSetFilter} />
-            <ExpenseList expenses={expenses} />
+            <div className='expense-index-greeting'>
+                <h2>
+                    Hello {user ? `${user.fullname}` : 'Guest'}
+                </h2>
+                <p>Welcome back! It's A time to enter your expenses!
+                </p>
+                <Link to={'/expense/edit'} className='btn btn-add-expense'>Add Expense</Link>
+            </div>
+            <div className='expense-index-container'>
+                <ExpenseFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+                <ExpenseList expenses={expenses} />
+            </div>
         </section>
     )
 }

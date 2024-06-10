@@ -1,0 +1,26 @@
+.user-msg {
+    background-color: $clr2;
+    padding: 0.5em 0.5em;
+    position: fixed;
+    bottom: 4px;
+    right: 1em;
+    color: $clr1;
+    border-radius: 2px;
+    font-size: 1.1em;
+    display: flex;
+
+
+    &.success {
+        background-color: $clr2;
+    }
+
+    &.error {
+        background-color: darken($clr2, 20%);
+    }
+
+    button {
+        padding: 1px 3px 0px 3px;
+        line-height: 0;
+        margin-inline-end: 10px;
+    }
+}
