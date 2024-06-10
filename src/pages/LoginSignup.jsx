@@ -20,7 +20,11 @@ export function LoginSignup() {
                 showSuccessMsg('Logged in successfully')
                 navigate('/')
             })
-            .catch(() => { showErrorMsg('Oops try again') })
+            .catch(() => {
+                console.log('kl:',)
+
+                showErrorMsg('Oops try again')
+            })
     }
 
     function _signup(credentials) {

@@ -1,5 +1,5 @@
-import { storageService } from './async-storage.service'
-import { utilService } from './util.service'
+import { httpService } from './http.service'
+const BASE_URL = 'expense/'
 
 export const expenseService = {
     query,
@@ -11,12 +11,9 @@ export const expenseService = {
     getEmptyExpense
 }
 
-const STORAGE_KEY = 'expense_DB'
-
-_createExpenses()
-
 async function query(filterBy) {
-    let expenses = await storageService.query(STORAGE_KEY)
+    let expenses = await httpService.get(BASE_URL)
+
     const { date, categorys } = filterBy
     if (date) {
         expenses = expenses.filter(expense => expense.date > date)
@@ -28,24 +25,24 @@ async function query(filterBy) {
 }
 
 function getById(expenseId) {
-    return storageService.get(STORAGE_KEY, expenseId)
+    return httpService.get(BASE_URL + expenseId)
 }
 
 function remove(expenseId) {
-    return storageService.remove(STORAGE_KEY, expenseId)
+    return httpService.delete(BASE_URL + expenseId)
 }
 
 function save(expense) {
 
     if (expense._id) {
-        return storageService.put(STORAGE_KEY, expense)
+        return httpService.put(BASE_URL, expense)
     } else {
-        return storageService.post(STORAGE_KEY, expense)
+        return httpService.post(BASE_URL, expense)
     }
 }
 
-function getCategoryExpenses() {
-    return storageService.query(STORAGE_KEY).then((expenses) => {
+async function getCategoryExpenses() {
+    return await httpService.get(BASE_URL).then((expenses) => {
         const categoryExpenses = {}
 
         expenses.forEach((expense) => {
@@ -60,7 +57,6 @@ function getCategoryExpenses() {
             category,
             expense,
         }))
-
         return categoryCountArray
     })
 }
@@ -82,15 +78,15 @@ function getDefaultFilter() {
 }
 
 
-function _createExpenses() {
-    let expenses = utilService.loadFromStorage(STORAGE_KEY)
-    if (!expenses || !expenses.length) {
-        expenses = [
-            { _id: utilService.makeId(), amount: 100, category: 'Food', date: 1709970490000, notes: '' },
-            { _id: utilService.makeId(), amount: 50, category: 'Transport', date: 1709106490000, notes: 'To my mother' },
-            { _id: utilService.makeId(), amount: 32, category: 'Utilities', date: 1709128090000, notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit' },
-            { _id: utilService.makeId(), amount: 252, category: 'Food', date: 1709049730000, notes: 'For Ally birthday' }
-        ]
-        utilService.saveToStorage(STORAGE_KEY, expenses)
-    }
-}
+// function _createExpenses() {
+//     let expenses = utilService.loadFromStorage(STORAGE_KEY)
+//     if (!expenses || !expenses.length) {
+//         expenses = [
+//             { _id: utilService.makeId(), amount: 100, category: 'Food', date: 1709970490000, notes: '' },
+//             { _id: utilService.makeId(), amount: 50, category: 'Transport', date: 1709106490000, notes: 'To my mother' },
+//             { _id: utilService.makeId(), amount: 32, category: 'Utilities', date: 1709128090000, notes: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit' },
+//             { _id: utilService.makeId(), amount: 252, category: 'Food', date: 1709049730000, notes: 'For Ally birthday' }
+//         ]
+//         utilService.saveToStorage(STORAGE_KEY, expenses)
+//     }
+// }
