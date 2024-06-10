@@ -10,8 +10,8 @@ export function AppHeader() {
                 </Link>
                 <nav>
                     <NavLink to="/">Expenses</NavLink>
-                    <NavLink to="/Statistic">Statistic</NavLink>
-                    <NavLink to="/LoginSignup">Login</NavLink>
+                    <NavLink to="/statistic">Statistic</NavLink>
+                    <NavLink to="/loginSignup">Login</NavLink>
                 </nav>
             </header>
         </section>

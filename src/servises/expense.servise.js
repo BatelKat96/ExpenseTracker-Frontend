@@ -6,6 +6,7 @@ export const expenseService = {
     getById,
     save,
     remove,
+    getCategoryCounts: getCategoryExpenses,
     getDefaultFilter,
     getEmptyExpense
 }
@@ -42,6 +43,28 @@ function save(expense) {
         return storageService.post(STORAGE_KEY, expense)
     }
 }
+
+function getCategoryExpenses() {
+    return storageService.query(STORAGE_KEY).then((expenses) => {
+        const categoryExpenses = {}
+
+        expenses.forEach((expense) => {
+            if (categoryExpenses[expense.category]) {
+                categoryExpenses[expense.category] += expense.amount
+            } else {
+                categoryExpenses[expense.category] = expense.amount
+            }
+        })
+
+        const categoryCountArray = Object.entries(categoryExpenses).map(([category, expense]) => ({
+            category,
+            expense,
+        }))
+
+        return categoryCountArray
+    })
+}
+
 
 function getEmptyExpense() {
     return {
