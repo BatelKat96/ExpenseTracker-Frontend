@@ -6,7 +6,7 @@ export const expenseService = {
     getById,
     save,
     remove,
-    getCategoryCounts: getCategoryExpenses,
+    getCategoryExpenses,
     getDefaultFilter,
     getEmptyExpense
 }
@@ -44,12 +44,11 @@ function save(expense) {
 async function getCategoryExpenses() {
     return await httpService.get(BASE_URL).then((expenses) => {
         const categoryExpenses = {}
-
         expenses.forEach((expense) => {
             if (categoryExpenses[expense.category]) {
-                categoryExpenses[expense.category] += expense.amount
+                categoryExpenses[expense.category] += +expense.amount
             } else {
-                categoryExpenses[expense.category] = expense.amount
+                categoryExpenses[expense.category] = +expense.amount
             }
         })
 

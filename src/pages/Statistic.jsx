@@ -14,7 +14,9 @@ export function Statistic() {
     }, [])
 
     async function loadCategorysExpenses() {
-        await expenseService.getCategoryCounts().then((categoryExpenses) => setCategoryExpenses(categoryExpenses))
+        await expenseService.getCategoryExpenses().then((categoryExpenses) => {
+            setCategoryExpenses(categoryExpenses)
+        })
     }
 
     const data = {
@@ -22,7 +24,7 @@ export function Statistic() {
         datasets: [
             {
                 label: 'expenses of',
-                data: categoryExpenses.map((categoryExpense) => categoryExpense.expense),
+                data: categoryExpenses.map((categoryExpense) => +categoryExpense.expense),
                 backgroundColor: [
                     '#ffffff',
                     'rgb(147, 210, 253)',
@@ -49,6 +51,7 @@ export function Statistic() {
         },
 
     }
+
     return (
         <section className='statistic' >
             <Pie data={data} options={options} />
